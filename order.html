@@ -212,6 +212,77 @@
         padding: 24px;
       }
     }
+
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: white;
+      padding: 40px;
+      max-width: 500px;
+      width: 90%;
+      max-height: 80vh;
+      overflow-y: auto;
+      border-radius: 4px;
+    }
+
+    .modal-box h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 24px;
+    }
+
+    .modal-item {
+      border-bottom: 1px solid #E8E0D5;
+      padding: 12px 0;
+      font-size: 0.9rem;
+    }
+
+    .modal-item span {
+      color: #999;
+      display: block;
+      font-size: 0.8rem;
+      margin-bottom: 4px;
+    }
+
+    .modal-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn-cancel {
+      flex: 1;
+      padding: 14px;
+      border: 1px solid #1A1A1A;
+      background: white;
+      cursor: pointer;
+      font-family: Inter, sans-serif;
+    }
+
+    .btn-submit {
+      flex: 1;
+      padding: 14px;
+      background: #C96A3D;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-family: Inter, sans-serif;
+    }
   </style>
 </head>
 <body>
@@ -245,7 +316,7 @@
 
     <section class="form-card">
       <form action="https://formspree.io/f/xkoewdap" method="POST">
-        <input type="hidden" name="_next" value="https://zambian-daily.github.io/happy-chihi-tailor/index.html" />
+        <input type="hidden" name="_next" value="https://zambian-daily.github.io/happy-chihi-tailor/thankyou.html" />
         <input type="hidden" name="オーダー番号" id="order-id" />
         <input type="hidden" name="_subject" id="email-subject" />
         <div class="form-group">
@@ -255,12 +326,12 @@
 
         <div class="form-group">
           <label for="contact">メールアドレス（必須）</label>
-          <input type="email" id="contact" name="contact" required placeholder="例：your@email.com" />
+          <input type="email" id="contact" name="_replyto" required placeholder="例：your@email.com" />
         </div>
 
         <div class="form-group">
-          <label for="product">ご希望の商品名（必須）</label>
-          <input type="text" id="item-name" name="product" required placeholder="例：エプロン、ピアス A" />
+          <label for="item-name">ご希望の商品名（必須）</label>
+          <input type="text" id="item-name" name="product" required placeholder="商品ページから自動入力されます" />
         </div>
 
         <div class="form-group">
@@ -284,7 +355,7 @@
           <textarea id="message" name="message" placeholder="色やサイズのご希望などがあればご記入ください。"></textarea>
         </div>
 
-        <button type="submit" class="button" onclick="return confirm('注文内容を確認しました。送信しますか？')">注文を送信する</button>
+        <button type="button" class="button" onclick="openModal()">注文を送信する</button>
       </form>
     </section>
   </main>
@@ -297,7 +368,19 @@
     </div>
   </footer>
 
+  <div class="modal-overlay" id="confirm-modal">
+    <div class="modal-box">
+      <h3>注文内容の確認</h3>
+      <div id="modal-content"></div>
+      <div class="modal-buttons">
+        <button class="btn-cancel" onclick="closeModal()">修正する</button>
+        <button class="btn-submit" onclick="submitForm()">送信する</button>
+      </div>
+    </div>
+  </div>
+
   <script>
+    const form = document.querySelector('form');
     const params = new URLSearchParams(window.location.search);
     const item = params.get('item');
     const orderId = 'ORD-' + Date.now().toString().slice(-6);
@@ -309,7 +392,10 @@
     };
     if (item) {
       const formatted = item.replace(/_/g, ' ').replace(/^\d+\s/, '');
-      document.getElementById('item-name').value = formatted;
+      itemInput.value = formatted;
+      itemInput.setAttribute('readonly', true);
+      itemInput.style.backgroundColor = '#F0F0F0';
+      itemInput.style.cursor = 'not-allowed';
     }
     if (itemInput) {
       itemInput.addEventListener('input', updateSubject);
@@ -320,6 +406,31 @@
     const minDate = new Date(today);
     minDate.setDate(today.getDate() + 7);
     dateInput.min = minDate.toISOString().split('T')[0];
+
+    function openModal() {
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      const inputs = form.querySelectorAll('input:not([type=hidden]), select, textarea');
+      let html = '';
+      inputs.forEach(input => {
+        if (!input.value) return;
+        const label = document.querySelector('label[for="' + input.id + '"]');
+        const labelText = label ? label.textContent : input.name;
+        html += '<div class="modal-item"><span>' + labelText + '</span>' + input.value + '</div>';
+      });
+      document.getElementById('modal-content').innerHTML = html;
+      document.getElementById('confirm-modal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('confirm-modal').classList.remove('active');
+    }
+
+    function submitForm() {
+      form.submit();
+    }
   </script>
 </body>
 </html>
