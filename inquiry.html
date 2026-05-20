@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>注文フォーム | HAPPY CHIHI TAILOR</title>
+  <title>お問い合わせ | HAPPY CHIHI TAILOR</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -59,6 +59,10 @@
       display: block;
     }
 
+    nav {
+      display: none;
+    }
+
     .nav-links {
       display: flex;
       flex-wrap: wrap;
@@ -68,8 +72,14 @@
       letter-spacing: 0.02em;
     }
 
-    nav {
-      display: none;
+    .nav-links a {
+      color: var(--text);
+      white-space: nowrap;
+    }
+
+    .nav-links a.order-custom {
+      color: var(--accent);
+      font-weight: 700;
     }
 
     .page-title {
@@ -112,17 +122,15 @@
       margin-bottom: 18px;
     }
 
-    label {
+    .form-group label {
       font-weight: 600;
       font-size: 0.98rem;
     }
 
-    input[type='text'],
-    input[type='email'],
-    input[type='tel'],
-    input[type='date'],
-    select,
-    textarea {
+    .form-group input[type='text'],
+    .form-group input[type='email'],
+    .form-group textarea,
+    .form-group select {
       width: 100%;
       padding: 14px 16px;
       border: 1px solid var(--border);
@@ -134,15 +142,15 @@
       transition: border-color 0.2s ease;
     }
 
-    input:focus,
-    select:focus,
-    textarea:focus {
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
       border-color: var(--accent);
       box-shadow: 0 0 0 4px rgba(201, 106, 61, 0.12);
     }
 
     textarea {
-      min-height: 150px;
+      min-height: 160px;
       resize: vertical;
     }
 
@@ -239,8 +247,8 @@
 
   <main>
     <section class="page-title">
-      <h1>注文フォーム</h1>
-      <p>商品名と受け取り方法を選んで、安心してご注文ください。注文内容は担当者より確認の連絡を差し上げます。</p>
+      <h1>お問い合わせ</h1>
+      <p>商品やオーダーメイドについて、お気軽にお問い合わせください</p>
     </section>
 
     <section class="form-card">
@@ -254,37 +262,27 @@
         </div>
 
         <div class="form-group">
-          <label for="contact">メールアドレス（必須）</label>
-          <input type="email" id="contact" name="contact" required placeholder="例：your@email.com" />
+          <label for="email">メールアドレス（必須）</label>
+          <input type="email" id="email" name="email" required placeholder="例：your@email.com" />
         </div>
 
         <div class="form-group">
-          <label for="product">ご希望の商品名（必須）</label>
-          <input type="text" id="item-name" name="product" required placeholder="例：エプロン、ピアス A" />
-        </div>
-
-        <div class="form-group">
-          <label for="pickup-date">受け取り希望期限（任意）</label>
-          <input type="date" id="pickup-date" name="preferred_date" />
-        </div>
-
-        <div class="form-group">
-          <label for="delivery">受け渡し方法（必須）</label>
-          <select id="delivery" name="delivery_method" required>
+          <label for="inquiry-type">お問い合わせの種類（必須）</label>
+          <select id="inquiry-type" name="inquiry_type" required>
             <option value="">選択してください</option>
-            <option value="JICAザンビア事務所 ピジョンボックス">JICAザンビア事務所 ピジョンボックス</option>
-            <option value="ルサカの製作所まで取りに来る">ルサカの製作所まで取りに来る</option>
-            <option value="イベント等で直接手渡し">イベント等で直接手渡し</option>
+            <option value="商品について">商品について</option>
+            <option value="オーダーメイドについて">オーダーメイドについて</option>
+            <option value="受け渡しについて">受け渡しについて</option>
             <option value="その他">その他</option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="message">その他ご希望・コメント（任意）</label>
-          <textarea id="message" name="message" placeholder="色やサイズのご希望などがあればご記入ください。"></textarea>
+          <label for="message">お問い合わせ内容（必須）</label>
+          <textarea id="message" name="message" required placeholder="ご質問・ご要望をご記入ください"></textarea>
         </div>
 
-        <button type="submit" class="button" onclick="return confirm('注文内容を確認しました。送信しますか？')">注文を送信する</button>
+        <button type="submit" class="button" onclick="return confirm('注文内容を確認しました。送信しますか？')">送信する</button>
       </form>
     </section>
   </main>
@@ -298,28 +296,9 @@
   </footer>
 
   <script>
-    const params = new URLSearchParams(window.location.search);
-    const item = params.get('item');
-    const orderId = 'ORD-' + Date.now().toString().slice(-6);
-    document.getElementById('order-id').value = orderId;
-    const itemInput = document.getElementById('item-name');
-    const updateSubject = () => {
-      const itemValue = itemInput ? itemInput.value : '商品未選択';
-      document.getElementById('email-subject').value = '【注文】' + orderId + ' - ' + itemValue;
-    };
-    if (item) {
-      const formatted = item.replace(/_/g, ' ').replace(/^\d+\s/, '');
-      document.getElementById('item-name').value = formatted;
-    }
-    if (itemInput) {
-      itemInput.addEventListener('input', updateSubject);
-    }
-    updateSubject();
-    const dateInput = document.getElementById('pickup-date');
-    const today = new Date();
-    const minDate = new Date(today);
-    minDate.setDate(today.getDate() + 7);
-    dateInput.min = minDate.toISOString().split('T')[0];
+    const inquiryId = 'INQ-' + Date.now().toString().slice(-6);
+    document.getElementById('order-id').value = inquiryId;
+    document.getElementById('email-subject').value = '【お問い合わせ】' + inquiryId;
   </script>
 </body>
 </html>

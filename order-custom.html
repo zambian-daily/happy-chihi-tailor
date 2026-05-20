@@ -270,6 +270,7 @@
           <a href="index.html#home">雑貨・小物</a>
           <a href="index.html#order">注文する</a>
           <a href="order-custom.html" class="order-custom">オーダーメイド</a>
+          <a href="inquiry.html">お問い合わせ</a>
         </div>
       </nav>
     </div>
@@ -283,14 +284,17 @@
 
     <section class="form-card">
       <form action="https://formspree.io/f/xkoewdap" method="POST">
+        <input type="hidden" name="_next" value="https://zambian-daily.github.io/happy-chihi-tailor/index.html" />
+        <input type="hidden" name="オーダー番号" id="order-id" />
+        <input type="hidden" name="_subject" id="email-subject" />
         <div class="form-group">
           <label for="name">お名前（必須）</label>
           <input type="text" id="name" name="name" required placeholder="例：山田 太郎" />
         </div>
 
         <div class="form-group">
-          <label for="contact">連絡先 WhatsAppまたはメール（必須）</label>
-          <input type="text" id="contact" name="contact" required placeholder="例：+260 97 123 4567 または example@example.com" />
+          <label for="contact">メールアドレス（必須）</label>
+          <input type="email" id="contact" name="contact" required placeholder="例：your@email.com" />
         </div>
 
         <div class="form-group">
@@ -343,8 +347,8 @@
         </div>
 
         <div class="form-group">
-          <label for="preferred_date">受け取り希望期限（任意）</label>
-          <input type="date" id="preferred_date" name="preferred_date" />
+          <label for="pickup-date">受け取り希望期限（任意）</label>
+          <input type="date" id="pickup-date" name="preferred_date" />
         </div>
 
         <div class="form-group">
@@ -368,7 +372,7 @@
           <textarea id="additional_comments" name="additional_comments" placeholder="ご要望やご質問があればご記入ください。"></textarea>
         </div>
 
-        <button type="submit" class="button">オーダーメイドを依頼する</button>
+        <button type="submit" class="button" onclick="return confirm('注文内容を確認しました。送信しますか？')">オーダーメイドを依頼する</button>
       </form>
     </section>
   </main>
@@ -380,5 +384,16 @@
       <p>Handmade with love from African fabric</p>
     </div>
   </footer>
+
+  <script>
+    const orderId = 'CUSTOM-' + Date.now().toString().slice(-6);
+    document.getElementById('order-id').value = orderId;
+    document.getElementById('email-subject').value = '【オーダーメイド】' + orderId;
+    const dateInput = document.getElementById('pickup-date');
+    const today = new Date();
+    const minDate = new Date(today);
+    minDate.setDate(today.getDate() + 7);
+    dateInput.min = minDate.toISOString().split('T')[0];
+  </script>
 </body>
 </html>

@@ -159,6 +159,24 @@
       box-shadow: 0 18px 30px rgba(201, 106, 61, 0.24);
     }
 
+    .instagram-cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 42px;
+      border-radius: 999px;
+      background: white;
+      color: #1A1A1A;
+      text-decoration: none;
+      font-weight: 700;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .instagram-cta:hover {
+      background: #1A1A1A;
+      color: white;
+    }
+
     main {
       max-width: 1200px;
       margin: 0 auto;
@@ -432,6 +450,7 @@
           <a href="#home">雑貨・小物</a>
           <a href="#order">注文する</a>
           <a href="order-custom.html" class="order-custom">オーダーメイド</a>
+          <a href="inquiry.html">お問い合わせ</a>
         </div>
       </nav>
     </div>
@@ -458,7 +477,7 @@
           <div class="product-body">
             <h3>ピアス A</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=001_ピアスA">注文する</a>
           </div>
         </article>
 
@@ -469,7 +488,7 @@
           <div class="product-body">
             <h3>ピアス B</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=002_ピアスB">注文する</a>
           </div>
         </article>
 
@@ -480,7 +499,7 @@
           <div class="product-body">
             <h3>シュシュ</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=003_シュシュ">注文する</a>
           </div>
         </article>
       </div>
@@ -498,7 +517,7 @@
           <div class="product-body">
             <h3>巾着バッグ A</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=004_巾着バッグA">注文する</a>
           </div>
         </article>
 
@@ -509,7 +528,7 @@
           <div class="product-body">
             <h3>巾着バッグ B</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=005_巾着バッグB">注文する</a>
           </div>
         </article>
 
@@ -520,7 +539,7 @@
           <div class="product-body">
             <h3>巾着バッグ C</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=006_巾着バッグC">注文する</a>
           </div>
         </article>
 
@@ -531,7 +550,7 @@
           <div class="product-body">
             <h3>エコバッグ</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=007_エコバッグ">注文する</a>
           </div>
         </article>
       </div>
@@ -549,7 +568,7 @@
           <div class="product-body">
             <h3>がま口財布</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=008_がま口財布">注文する</a>
           </div>
         </article>
       </div>
@@ -567,7 +586,7 @@
           <div class="product-body">
             <h3>ポーチ</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=009_ポーチ">注文する</a>
           </div>
         </article>
       </div>
@@ -585,7 +604,7 @@
           <div class="product-body">
             <h3>エプロン</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=010_エプロン">注文する</a>
           </div>
         </article>
 
@@ -596,7 +615,7 @@
           <div class="product-body">
             <h3>ジャケット</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=011_ジャケット">注文する</a>
           </div>
         </article>
 
@@ -607,7 +626,7 @@
           <div class="product-body">
             <h3>シャツ</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=012_シャツ">注文する</a>
           </div>
         </article>
       </div>
@@ -654,7 +673,7 @@
           <div class="product-body">
             <h3>コースター</h3>
             <p class="price">K10,000</p>
-            <a class="button" href="order.html">注文する</a>
+            <a class="button order-btn" href="order.html?item=015_コースター">注文する</a>
           </div>
         </article>
 
@@ -680,6 +699,11 @@
           </div>
         </article>
       </div>
+    </section>
+
+    <section style="margin-top: 40px; padding: 28px 0 0; border-top: 1px solid #E8E0D5; text-align: center; color: #999; font-family: Inter, sans-serif; font-size: 0.85rem;">
+      <p style="margin: 0 0 8px;">新商品は毎週月曜日に更新されます</p>
+      <p style="margin: 0;">商品は手作りのため、売り切れの際はご了承ください</p>
     </section>
 
     <section id="order">
@@ -729,21 +753,29 @@
       </div>
     </section>
 
-    <section style="padding: 80px 20px; text-align: center; background: #FAFAF8;">
-      <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 8px;">Instagram</h2>
-      <p style="color: #888; margin-bottom: 32px;">最新作はInstagramで随時公開中</p>
-      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
-        <blockquote class="instagram-media" 
-          data-instgrm-permalink="https://www.instagram.com/chihitailor/" 
-          data-instgrm-version="14"
-          style="width:300px; min-width:280px;">
-        </blockquote>
+    <section style="padding: 80px 20px; text-align: center; background: #1A1A1A;">
+      <div style="display: inline-flex; flex-direction: column; align-items: center; gap: 18px; max-width: 420px; margin: 0 auto;">
+        <svg width="48" height="48" viewBox="0 0 24 24" style="margin-bottom: 16px;">
+          <defs>
+            <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#f09433"/>
+              <stop offset="25%" style="stop-color:#e6683c"/>
+              <stop offset="50%" style="stop-color:#dc2743"/>
+              <stop offset="75%" style="stop-color:#cc2366"/>
+              <stop offset="100%" style="stop-color:#bc1888"/>
+            </linearGradient>
+          </defs>
+          <rect width="24" height="24" rx="6" fill="url(#ig-grad)"/>
+          <circle cx="12" cy="12" r="4" fill="none" stroke="white" stroke-width="1.5"/>
+          <circle cx="17.5" cy="6.5" r="1" fill="white"/>
+          <rect x="2" y="2" width="20" height="20" rx="6" fill="none" stroke="white" stroke-width="1.5"/>
+        </svg>
+        <p style="color: white; margin: 0; font-weight: 700;">@chihitailor</p>
+        <p style="color: #ccc; margin: 0;">最新作はInstagramで随時公開中</p>
+        <a class="instagram-cta" href="https://www.instagram.com/chihitailor" target="_blank" rel="noreferrer">
+          Instagramで見る
+        </a>
       </div>
-      <script async src="//www.instagram.com/embed.js"></script>
-      <a href="https://www.instagram.com/chihitailor" target="_blank"
-        style="display: inline-block; padding: 14px 40px; background: #C96A3D; color: white; text-decoration: none; font-family: Inter, sans-serif; font-size: 0.95rem; letter-spacing: 0.05em;">
-        Instagramをもっと見る
-      </a>
     </section>
   </main>
 
