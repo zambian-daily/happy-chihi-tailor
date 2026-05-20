@@ -86,6 +86,24 @@
       white-space: nowrap;
     }
 
+    .nav-links a.order-custom {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    .outline-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 34px;
+      border: 2px solid var(--accent);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--accent);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
     .hero {
       min-height: 100vh;
       padding: 140px 24px 80px;
@@ -413,6 +431,7 @@
           <a href="#interior">インテリア</a>
           <a href="#home">雑貨・小物</a>
           <a href="#order">注文する</a>
+          <a href="order-custom.html" class="order-custom">オーダーメイド</a>
         </div>
       </nav>
     </div>
@@ -684,8 +703,9 @@
           <p>受け渡し場所やタイミングをご確認のうえ、お受け取りください。</p>
         </article>
       </div>
-      <div style="margin-top: 28px;">
+      <div style="margin-top: 28px; display: flex; flex-wrap: wrap; gap: 16px;">
         <a href="order.html" class="button">注文フォームへ</a>
+        <a href="order-custom.html" class="outline-button">オーダーメイドのご依頼はこちら</a>
       </div>
     </section>
 
@@ -709,14 +729,21 @@
       </div>
     </section>
 
-    <section>
-      <div class="section-header">
-        <h2>Instagram</h2>
+    <section style="padding: 80px 20px; text-align: center; background: #FAFAF8;">
+      <h2 style="font-family: 'Playfair Display', serif; font-size: 2rem; margin-bottom: 8px;">Instagram</h2>
+      <p style="color: #888; margin-bottom: 32px;">最新作はInstagramで随時公開中</p>
+      <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 32px;">
+        <blockquote class="instagram-media" 
+          data-instgrm-permalink="https://www.instagram.com/chihitailor/" 
+          data-instgrm-version="14"
+          style="width:300px; min-width:280px;">
+        </blockquote>
       </div>
-      <div class="instagram-panel">
-        <p>最新作はInstagramで随時公開中</p>
-        <a class="button" href="https://www.instagram.com/chihitailor" target="_blank" rel="noreferrer">Instagramを見る</a>
-      </div>
+      <script async src="//www.instagram.com/embed.js"></script>
+      <a href="https://www.instagram.com/chihitailor" target="_blank"
+        style="display: inline-block; padding: 14px 40px; background: #C96A3D; color: white; text-decoration: none; font-family: Inter, sans-serif; font-size: 0.95rem; letter-spacing: 0.05em;">
+        Instagramをもっと見る
+      </a>
     </section>
   </main>
 
